@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<style>
+    table{
+        margin: auto;
+        border: 1px solid blue;
+    }
+  img {
+    width: 100px; 
+    height: 100px; 
+
+  }
+    h1{
+        text-align: center;
+        background-color: aliceblue;
+    
+    }
+    #btnAlerta{
+        background-color: cadetblue;
+      margin-left: 48%;
+        
+    }
+    body{
+        background-color: darkgray;
+    }
+    
+</style>        
+<header><h1>Tabla dinamica</h1></header>
+
+<html lang="es">
+    
+    <head>
+        <title>Pratica 2</title>
+    </head>
+<body>
+        <table >
+            <tr>
+                <td><img id="img0" src="Parcial_1/img/1.jpg" width="150"></td>
+                <td><img id="img1" src="Parcial_1/img/2.jpg" width="150"></td>
+                <td><img id="img2" src="Parcial_1/img/3.jpg" width="150"></td>
+            </tr>
+            <tr>
+                <td><img id="img3" src="Parcial_1/img/4.jpg" width="150"></td>
+                <td><img id="img4" src="Parcial_1/img/5.jpg" width="150"></td>
+                <td><img id="img5" src="Parcial_1/img/6.jpg" width="150"></td>
+            </tr>
+            <tr>
+                <td><img id="img6" src="Parcial_1/img/7.jpg" width="150"></td>
+                <td><img id="img7" src="Parcial_1/img/8.jpg" width="150"></td>
+                <td><img id="img8" src="Parcial_1/img/9.jpg" width="150"></td>
+            </tr>
+        </table>
+
+        <br>
+        <button id="btnAlerta" onclick="revolverimg()">Revolver</button>
+
+        <script>
+            const img = [
+                "Parcial_1/img/1.jpg",
+                "Parcial_1/img/2.jpg",
+                "Parcial_1/img/3.jpg",
+                "Parcial_1/img/4.jpg",
+                "Parcial_1/img/5.jpg",
+                "Parcial_1/img/6.jpg",
+                "Parcial_1/img/7.jpg",
+                "Parcial_1/img/8.jpg",
+                "Parcial_1/img/9.jpg"
+            ];
+
+            function revolverimg() {
+               // alert("Imagenes revueltas!");
+                let imagenesMezcladas = [...img]; //se crea arreglo extra
+
+                for (let i = imagenesMezcladas.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [imagenesMezcladas[i], imagenesMezcladas[j]] = [imagenesMezcladas[j], imagenesMezcladas[i]];
+                    //Intercambio de elementos del arreglo (cambia el que está en i por el que está en j)
+                }
+
+                for (let i = 0; i < imagenesMezcladas.length; i++) {
+                    document.getElementById("img" + i).src = imagenesMezcladas[i];
+                    //Busca cada elemento de la tabla en la etiqueta con el img+i y lo reemplaza por el elemento random de j
+                }
+                
+            }
+        </script>
+        <footer><h1>187372 - Leonardo Soto Adame</h1></footer>
+    </body>
+    
+</html>
