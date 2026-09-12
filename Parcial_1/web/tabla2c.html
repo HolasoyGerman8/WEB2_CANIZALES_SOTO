@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 1</title>
+    <style>
+        table {
+            margin: auto;
+            border: 1px solid blue;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+        h1 {
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        #btnAlerta {
+            display: block;
+            margin: 0 auto;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Tabla estática</h1>
+    </header>
+
+    <table>
+        <tr>
+            <td><img id="img0" src="https://picsum.photos/id/10/300/300" alt="Imagen 1"></td>
+            <td><img id="img1" src="https://picsum.photos/id/20/300/300" alt="Imagen 2"></td>
+            <td><img id="img2" src="https://picsum.photos/id/28/300/300" alt="Imagen 3"></td>
+        </tr>
+        <tr>
+            <td><img id="img3" src="https://picsum.photos/id/1062/300/300" alt="Imagen 4"></td>
+            <td><img id="img4" src="https://picsum.photos/id/40/300/300" alt="Imagen 5"></td>
+            <td><img id="img5" src="https://picsum.photos/id/50/300/300" alt="Imagen 6"></td>
+        </tr>
+        <tr>
+            <td><img id="img6" src="https://picsum.photos/id/60/300/300" alt="Imagen 7"></td>
+            <td><img id="img7" src="https://picsum.photos/id/70/300/300" alt="Imagen 8"></td>
+            <td><img id="img8" src="https://picsum.photos/id/80/300/300" alt="Imagen 9"></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <footer>
+        <h1>Carlos Cañizales Pérez - 187313</h1>
+    </footer>
+    <br>
+
+    <button id="btnAlerta" onclick="revolverimg()">Revolver</button>
+
+    <script>
+        const img = [
+            "https://picsum.photos/id/10/300/300",
+            "https://picsum.photos/id/20/300/300",
+            "https://picsum.photos/id/28/300/300",
+            "https://picsum.photos/id/1062/300/300",
+            "https://picsum.photos/id/40/300/300",
+            "https://picsum.photos/id/50/300/300",
+            "https://picsum.photos/id/60/300/300",
+            "https://picsum.photos/id/70/300/300",
+            "https://picsum.photos/id/80/300/300"
+        ];
+
+        function revolverimg() {
+            let imagenesMezcladas = [...img]; // Se crea copia del arreglo
+
+            // Algoritmo Fisher-Yates para barajar
+            for (let i = imagenesMezcladas.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [imagenesMezcladas[i], imagenesMezcladas[j]] = [imagenesMezcladas[j], imagenesMezcladas[i]];
+            }
+
+            // Asignar nuevas posiciones a cada celda de la tabla
+            for (let i = 0; i < imagenesMezcladas.length; i++) {
+                document.getElementById("img" + i).src = imagenesMezcladas[i];
+            }
+        }
+    </script>
+</body>
+</html>
