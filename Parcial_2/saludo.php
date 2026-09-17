@@ -4,7 +4,7 @@
 </head>
 <body>
 <?php
-      echo "Hola Mundo";
+      echo "<b> Hola Mundo <b>";
       //Carpe
 ?>
 </body>
