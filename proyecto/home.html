@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prácticas Profesionales UPSLP | Conexión Laboral</title>
+  
+  <!-- Tipografía Inter & Poppins (como la plantilla) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Iconos Tabler Icons (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+
+  <style>
+    /* ==========================================================================
+       VARIABLES Y PALETA DE COLORES UPSLP + UNIONCORP
+       ========================================================================== */
+    :root {
+      /* Colores Institucionales UPSLP */
+      --upslp-blue: #002b66;       /* Azul marino profundo */
+      --upslp-blue-dark: #001d47;  /* Azul noche */
+      --upslp-gold: #c69214;       /* Dorado / Ocre */
+      --upslp-gold-hover: #b08110;
+      
+      /* Base neutra y fondos */
+      --bg-body: #f4f6f9;
+      --bg-card: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-color: #e5e7eb;
+      
+      /* Estilos Unioncorp */
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-card: 0 4px 12px rgba(0, 43, 102, 0.06);
+      --shadow-hover: 0 10px 24px rgba(0, 43, 102, 0.12);
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       NAVBAR (Estilo LinkedIn con identidad UPSLP)
+       ========================================================================== */
+    .navbar {
+      background-color: var(--upslp-blue-dark);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      border-bottom: 3px solid var(--upslp-gold);
+    }
+
+    .navbar-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+
+    .navbar-brand span {
+      color: var(--upslp-gold);
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 420px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 1rem 0.5rem 2.4rem;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-bar input:focus {
+      background: #fff;
+      color: var(--text-main);
+      border-color: var(--upslp-gold);
+    }
+
+    .search-bar i {
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-item a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+      transition: color 0.2s;
+    }
+
+    .nav-item a:hover, .nav-item.active a {
+      color: var(--upslp-gold);
+    }
+
+    .nav-item i {
+      font-size: 1.25rem;
+    }
+
+    /* ==========================================================================
+       MAIN LAYOUT (3 Columnas estilo Red Profesional)
+       ========================================================================== */
+    .app-container {
+      max-width: 1240px;
+      margin: 1.8rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 280px 1fr 300px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* ==========================================================================
+       COMPONENTES TIPO TARJETA (Inspirado en Unioncorp Card)
+       ========================================================================== */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Perfil Estudiante (Columna Izquierda) */
+    .profile-banner {
+      height: 65px;
+      background: linear-gradient(135deg, var(--upslp-blue), var(--upslp-gold));
+    }
+
+    .profile-info {
+      padding: 0 1.25rem 1.25rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .avatar-wrapper {
+      width: 72px;
+      height: 72px;
+      margin: -36px auto 0.6rem;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      overflow: hidden;
+      background: #e2e8f0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-info h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .profile-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .profile-stats {
+      border-top: 1px solid var(--border-color);
+      padding: 0.85rem 1.25rem;
+      font-size: 0.82rem;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-number {
+      font-weight: 700;
+      color: var(--upslp-blue);
+    }
+
+    /* ==========================================================================
+       FEED DE VACANTES (Columna Central)
+       ========================================================================== */
+    .job-card {
+      padding: 1.25rem;
+      cursor: pointer;
+    }
+
+    .job-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(0, 43, 102, 0.2);
+    }
+
+    .job-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .company-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-color);
+      flex-shrink: 0;
+      font-weight: 700;
+      color: var(--upslp-blue);
+    }
+
+    .job-details {
+      flex: 1;
+    }
+
+    .job-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--upslp-blue-dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .company-name {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .verified-badge {
+      color: var(--upslp-gold);
+      font-size: 0.95rem;
+    }
+
+    .job-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0.75rem 0;
+    }
+
+    .job-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .job-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      background: #eef4ff;
+      color: var(--upslp-blue);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+    }
+
+    .tag.gold {
+      background: #fdf8eb;
+      color: #946900;
+    }
+
+    .job-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 0.75rem;
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background-color: var(--upslp-blue);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--upslp-blue-dark);
+    }
+
+    .btn-gold {
+      background-color: var(--upslp-gold);
+      color: #fff;
+    }
+
+    .btn-gold:hover {
+      background-color: var(--upslp-gold-hover);
+    }
+
+    .btn-outline {
+      border-color: var(--border-color);
+      color: var(--text-muted);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: #f8fafc;
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       SIDEBAR DERECHO (Convenios UPSLP)
+       ========================================================================== */
+    .widget-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--upslp-blue);
+    }
+
+    .company-list {
+      padding: 0.75rem 1.25rem;
+      list-style: none;
+    }
+
+    .company-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .company-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .company-item .thumb {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: var(--upslp-blue);
+    }
+
+    /* Responsividad */
+    @media (max-width: 992px) {
+      .app-container {
+        grid-template-columns: 240px 1fr;
+      }
+      .right-sidebar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .app-container {
+        grid-template-columns: 1fr;
+      }
+      .left-sidebar {
+        display: none;
+      }
+      .search-bar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="#" class="navbar-brand">
+        <i class="ti ti-school"></i>
+        <span>UPSLP</span> Conecta
+      </a>
+
+      <div class="search-bar">
+        <i class="ti ti-search"></i>
+        <input type="text" placeholder="Buscar vacante, empresa, tecnología o carrera...">
+      </div>
+
+      <ul class="navbar-nav">
+        <li class="nav-item active"><a href="#"><i class="ti ti-smart-home"></i> Inicio</a></li>
+        <li class="nav-item"><a href="#"><i class="ti ti-briefcase"></i> Vacantes</a></li>
+        <li class="nav-item"><a href="#"><i class="ti ti-send"></i> Mis Postulaciones</a></li>
+        <li class="nav-item"><a href="#"><i class="ti ti-bell"></i> Avisos</a></li>
+        <li class="nav-item"><a href="#"><i class="ti ti-user-circle"></i> Perfil</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="app-container">
+    
+    <!-- COLUMNA IZQUIERDA: RESUMEN DEL ASPIRANTE / ESTUDIANTE -->
+    <aside class="left-sidebar">
+      <div class="card">
+        <div class="profile-banner"></div>
+        <div class="profile-info">
+          <div class="avatar-wrapper">
+            <!-- Placeholder para foto de alumno -->
+            <img src="https://ui-avatars.com/api/?name=Estudiante+UPSLP&background=002b66&color=fff" alt="Avatar Alumno">
+          </div>
+          <h3>Alan González</h3>
+          <p>Ingeniería en Tecnologías de Información (ITI)</p>
+          <span class="tag gold" style="margin-top: 0.4rem; display: inline-block;">8vo Semestre</span>
+        </div>
+        <div class="profile-stats">
+          <div class="stat-row">
+            <span>Matrícula:</span>
+            <span class="stat-number">180450</span>
+          </div>
+          <div class="stat-row">
+            <span>Postulaciones:</span>
+            <span class="stat-number">3 activas</span>
+          </div>
+          <div class="stat-row">
+            <span>CV Cargado:</span>
+            <span style="color: #10b981; font-weight: 600;"><i class="ti ti-check"></i> Al corriente</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- COLUMNA CENTRAL: FEED DE VACANTES SIMULADAS CON CONVENIO -->
+    <section class="main-feed">
+      
+      <!-- VACANTE 1: BMW Group -->
+      <article class="card job-card">
+        <div class="job-header">
+          <div class="company-logo">BMW</div>
+          <div class="job-details">
+            <h2 class="job-title">Practicante de Desarrollo Web & TI</h2>
+            <div class="company-name">
+              BMW Group Planta San Luis Potosí
+              <i class="ti ti-circle-check-filled verified-badge" title="Empresa con convenio vigente"></i>
+            </div>
+            <div class="job-meta">
+              <span><i class="ti ti-map-pin"></i> Parque Industrial Logistik II, SLP</span>
+              <span><i class="ti ti-clock"></i> Matutino (4 a 6 hrs)</span>
+              <span><i class="ti ti-coin"></i> Apoyo económico mensual</span>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 0.88rem; color: #475569; margin: 0.6rem 0;">
+          Colaboración activa en la automatización de procesos internos mediante el desarrollo de aplicaciones web fullstack con PHP, JavaScript y bases de datos relacionales.
+        </p>
+
+        <div class="job-tags">
+          <span class="tag">ITI</span>
+          <span class="tag">ITER</span>
+          <span class="tag">PHP / JS</span>
+          <span class="tag gold">Convenio Activo</span>
+        </div>
+
+        <div class="job-actions">
+          <span style="font-size: 0.78rem; color: var(--text-muted);"><i class="ti ti-calendar"></i> Publicado hace 2 días</span>
+          <div>
+            <button class="btn btn-outline"><i class="ti ti-bookmark"></i> Guardar</button>
+            <button class="btn btn-primary" onclick="alert('Simulación: Postulación enviada con tu perfil UPSLP')">Postularme</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- VACANTE 2: Continental -->
+      <article class="card job-card">
+        <div class="job-header">
+          <div class="company-logo">CONTI</div>
+          <div class="job-details">
+            <h2 class="job-title">Intern en Ciberseguridad e Infraestructura</h2>
+            <div class="company-name">
+              Continental Automotive SLP
+              <i class="ti ti-circle-check-filled verified-badge" title="Empresa con convenio vigente"></i>
+            </div>
+            <div class="job-meta">
+              <span><i class="ti ti-map-pin"></i> Zona Industrial, SLP</span>
+              <span><i class="ti ti-building-bank"></i> Híbrido</span>
+              <span><i class="ti ti-coin"></i> Beca económica + Comedor</span>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 0.88rem; color: #475569; margin: 0.6rem 0;">
+          Monitoreo de redes locales, documentación de vulnerabilidades y apoyo en políticas de seguridad perimetral para estaciones de trabajo.
+        </p>
+
+        <div class="job-tags">
+          <span class="tag">ITER</span>
+          <span class="tag">Redes</span>
+          <span class="tag">Linux</span>
+          <span class="tag gold">Convenio Activo</span>
+        </div>
+
+        <div class="job-actions">
+          <span style="font-size: 0.78rem; color: var(--text-muted);"><i class="ti ti-calendar"></i> Publicado hoy</span>
+          <div>
+            <button class="btn btn-outline"><i class="ti ti-bookmark"></i> Guardar</button>
+            <button class="btn btn-primary">Postularme</button>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- COLUMNA DERECHA: EMPRESAS CON CONVENIO / AVISOS -->
+    <aside class="right-sidebar">
+      <div class="card">
+        <h4 class="widget-title"><i class="ti ti-building"></i> Empresas con Convenio</h4>
+        <ul class="company-list">
+          <li class="company-item">
+            <div class="thumb">BMW</div>
+            <div>
+              <strong style="font-size: 0.85rem;">BMW Group SLP</strong>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">4 vacantes activas</p>
+            </div>
+          </li>
+          <li class="company-item">
+            <div class="thumb">GM</div>
+            <div>
+              <strong style="font-size: 0.85rem;">General Motors</strong>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">2 vacantes activas</p>
+            </div>
+          </li>
+          <li class="company-item">
+            <div class="thumb">BOSCH</div>
+            <div>
+              <strong style="font-size: 0.85rem;">Robert Bosch SLP</strong>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">3 vacantes activas</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card" style="padding: 1.25rem; font-size: 0.82rem; background: #fff8e6; border-color: #f6e05e;">
+        <strong style="color: #b7791f; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
+          <i class="ti ti-info-circle"></i> Aviso de Vinculación
+        </strong>
+        Recuerda que para liberar tus prácticas debes tener liberado el 70% de créditos y contar con Seguro Facultativo vigente.
+      </div>
+    </aside>
+
+  </main>
+
+</body>
+</html>
